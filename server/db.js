@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
 
 mongoose.connect(
   "mongodb+srv://elifnurkutlug:Elif.1995@cluster0.qyjmw5t.mongodb.net/food-order?retryWrites=true&w=majority"
