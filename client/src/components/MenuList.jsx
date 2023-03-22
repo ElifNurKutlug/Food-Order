@@ -6,24 +6,27 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function MenuList({ menu }) {
-  //Modal için useStateler:
-
+  /*Modal için UseStateler*/
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const [ozellik, setOzellik] = useState("medium");
-  const [miktar, setMiktar] = useState("1");
+  const [miktar, setMiktar] = useState(1);
 
   const adetHandler = (e) => {
     setMiktar(e.target.value);
   };
 
+  console.log(ozellik);
+
   const dispatch = useDispatch();
 
   const addToCart = () => {
-    dispatch(addToCartAction(menu, miktar, ozellik));
+    if (miktar > 0) {
+      toast("Sepete Ürün Eklendi");
+      dispatch(addToCartAction(menu, miktar, ozellik));
+    }
   };
 
   return (
@@ -53,10 +56,9 @@ function MenuList({ menu }) {
         <div className="card-body">
           <h5 className="card-title">{menu.ad}</h5>
         </div>
-
         <div className="row">
           <div className="col-md-6">
-            <h5>ÖZELLİK</h5>
+            <h5>Özellik</h5>
             <select
               name=""
               id=""
@@ -70,7 +72,6 @@ function MenuList({ menu }) {
               ))}
             </select>
           </div>
-
           <div className="col-md-6">
             <h5>Miktar</h5>
             <select
@@ -79,28 +80,27 @@ function MenuList({ menu }) {
               className="form-select mb-3"
               onChange={adetHandler}
             >
-              {[...Array(10).keys()].map((x) => (
-                <option value={x + 1}>{x + 1}</option>
+              {[...Array(10).keys()].map((x, index) => (
+                <option key={index} value={x + 1}>
+                  {x + 1}
+                </option>
               ))}
             </select>
           </div>
-          <div className="col-md-12 mt-3">
-            <h4 className="text-danger">
-              Fiyat: {menu.fiyat[0][ozellik] * miktar}
-            </h4>
-          </div>
-          <div className="div">
-            <button
-              href="#"
-              className="btn btn-outline-danger w-100"
-              onClick={addToCart}
-            >
-              SEPETE EKLE
-            </button>
-          </div>
+        </div>
+        <div className="col-md-12 mt-3">
+          <h6 className="text-danger">
+            Fiyat: {menu.fiyat[0][ozellik] * miktar}
+          </h6>
+        </div>
+        <div className="div">
+          <button className="btn btn-outline-danger w-100" onClick={addToCart}>
+            SEPETE EKLE
+          </button>
         </div>
       </div>
-      {/* /*Modal başlangıcı*/}
+
+      {/* Modal Başlangıcı */}
       <Modal
         show={show}
         onHide={handleClose}
