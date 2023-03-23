@@ -11,7 +11,7 @@ function Navbar() {
     <div>
       <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
         <div className="container">
-          <Link className="navbar-brand text-danger" to="#">
+          <Link className="navbar-brand text-danger" to="/">
             FOOD-ORDER
           </Link>
           <button
@@ -33,12 +33,23 @@ function Navbar() {
                 </Link>
               </li>
             </ul>
+
             <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Giriş Yap <i class="fa-solid fa-right-to-bracket"></i>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/register">
+                  Kayıt Ol <i class="fa-solid fa-registered"></i>
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/sepet">
                   Sepet
-                  <i class="fa-sharp fa-solid fa-bag-shopping mx-2"></i>
-                  <span class="position-absolute top-10 start-80 translate-middle badge rounded-pill bg-danger">
+                  <i className="fa-sharp fa-solid fa-bag-shopping mx-2"></i>
+                  <span className="position-absolute top-10 start-80 translate-middle badge rounded-pill bg-danger">
                     {cartItems.length}
                   </span>
                 </Link>
