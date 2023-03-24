@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(
+  "sk_test_51Moob4CICY9j85jEMF7cOy8rOi9HKwqV7Nju1j2fs0oJVPMydbKNAmvT8Sc6Ur8u99J5wxq8l7yK94ruNoP7xr5X00QWFz80tC"
+);
 const { v4: uuidv4 } = require("uuid");
 
 const cors = require("cors");
@@ -46,14 +48,26 @@ router.post("/checkout", async (req, res) => {
         },
         transactionId: payment.source.id,
       });
+
       newOrder.save();
+
       res.send("Ödeme Başarıyla Gerçekleşti");
     } else {
-      res.send("Ödeme Başarısız");
+      res.send("upps bir şeyler ters gitti..");
     }
   } catch (error) {
     res.status(400).json({ message: "Ödeme Başarısız", error });
   }
 });
 
+router.post("/getusersorders", async (req, res) => {
+  const { userid } = req.body;
+
+  try {
+    const orders = await OrderModel.find({ userid: userid }).sort({ _id: -1 });
+    res.send(orders);
+  } catch (error) {
+    res.status(400).json({ message: "Siparişlere Erişilemiyor" });
+  }
+});
 module.exports = router;

@@ -18,7 +18,7 @@ function CheckoutPage({ toplamfiyat }) {
         shippingAddress
         billingAddress
         token={tokenHandler}
-        stripeKey="pk_test_51MV9VIAEY249VO0yq3SGbP130P9341uHf9LRtAZ0DVw27oZ5c1w2pWq83cRBUuzDLDxYUaXGq4i2De2pv5Gnxkrw00m21s3RGJ"
+        stripeKey="pk_test_51Moob4CICY9j85jEXMieE8tUNnFal0mqsSM4FLHwCYgT0IprMleR5L0TdtPngHRn54bGfBvDiSSnJaj8Lsb65RSW00gYf5S4EV"
         currency="TRY"
       >
         <button className="btn btn-outline-danger mb-3 w-25">HEMEN ÖDE!</button>
