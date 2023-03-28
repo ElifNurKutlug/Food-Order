@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteBurgerAction, getAllBurgers } from "../actions/burgerActions";
-
+// Action'ı sayfaya çağırıyor
 function MenusList() {
   const burgerState = useSelector((state) => state.getAllBurgersReducer);
 
